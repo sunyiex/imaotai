@@ -22,7 +22,7 @@ headers = {}
 mt_version = "".join(re.findall('new__latest__version">(.*?)</p>',
                                 requests.get('https://apps.apple.com/cn/app/i%E8%8C%85%E5%8F%B0/id1600482450').text,
                                 re.S)).replace('版本 ', '')
-
+mt_version = re.sub(r"[^0-9.]", "", mt_version)
 header_context = f'''
 MT-Lat: 28.499562
 MT-K: 1675213490331
