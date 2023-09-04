@@ -19,9 +19,9 @@ SALT = '2af72f100c356273d46284f6fd1dfc08'
 
 CURRENT_TIME = str(int(time.time() * 1000))
 headers = {}
-mt_version = "".join(re.findall('new__latest__version">(.*?)</p>',
-                                requests.get('https://apps.apple.com/cn/app/i%E8%8C%85%E5%8F%B0/id1600482450').text,
-                                re.S)).replace('版本 ', '')
+appleRes = requests.get('https://apps.apple.com/cn/app/i%E8%8C%85%E5%8F%B0/id1600482450')
+appleRes.encoding = appleRes.apparent_encoding
+mt_version = "".join(re.findall('new__latest__version">(.*?)</p>',appleRes.text,re.S)).replace('版本 ', '')
 mt_version = re.sub(r"[^0-9.]", "", mt_version)
 header_context = f'''
 MT-Lat: 28.499562
